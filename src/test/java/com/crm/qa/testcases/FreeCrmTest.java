@@ -67,7 +67,8 @@ public class FreeCrmTest extends TestBase{
 		//		System.out.println("title is: " + title);
 	}
 		
-	public void freeCrmTitleMessageTest() {
+	@Test
+	public void freeCrmTitleMessageTest() throws InterruptedException {
 		String message = "Free CRM software in the cloud powers sales and customer serviceQQQQ";
 		Assert.assertFalse(freeCrmPage.TitleMessageTest(message));
 	}
@@ -130,4 +131,4 @@ public class FreeCrmTest extends TestBase{
 //
 //	}
 
-}
+
