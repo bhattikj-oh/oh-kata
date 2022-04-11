@@ -16,6 +16,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import com.crm.qa.util.TestUtil;
 import com.crm.qa.util.WebEventListener;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class TestBase {
 	
 	public static WebDriver driver;
@@ -41,11 +43,13 @@ public class TestBase {
 		String browserName = prop.getProperty("browser");
 		
 		if(browserName.equals("chrome")){
-			System.setProperty("webdriver.chrome.driver", "/Users/naveenkhunteta/Downloads/chromedriver");	
+			WebDriverManager.chromedriver().setup();
+//			System.setProperty("webdriver.chrome.driver", "/Users/naveenkhunteta/Downloads/chromedriver");	
 			driver = new ChromeDriver(); 
 		}
 		else if(browserName.equals("FF")){
-			System.setProperty("webdriver.gecko.driver", "/Users/naveenkhunteta/Documents/SeleniumServer/geckodriver");	
+			WebDriverManager.firefoxdriver().setup();
+//			System.setProperty("webdriver.gecko.driver", "/Users/naveenkhunteta/Documents/SeleniumServer/geckodriver");	
 			driver = new FirefoxDriver(); 
 		}
 		
