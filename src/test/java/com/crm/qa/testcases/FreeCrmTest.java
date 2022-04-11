@@ -15,39 +15,63 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class FreeCrmTest {
+import com.crm.qa.base.TestBase;
+import com.crm.qa.pages.FreeCrmPage;
 
-	static WebDriver driver;
+public class FreeCrmTest extends TestBase{
+
+//	static WebDriver driver;   This is already created from the super 
 	static JavascriptExecutor js;
+	FreeCrmPage freeCrmPage;
 
+	public FreeCrmTest() {
+		super();
+	}
+	
+	
 	@BeforeMethod
 	public void setUp() throws Exception {
-		WebDriverManager.chromedriver().setup();
+		initialization();
+		freeCrmPage = new FreeCrmPage();
+		
+		
+		// Driver is being inherited from super 
+		
 //		System.setProperty("webdriver.chrome.driver", "/Users/naveenkhunteta/Downloads/chromedriver");
-		driver = new ChromeDriver();
-		js = (JavascriptExecutor) driver;
-		driver.get("https://www.freecrm.com/index.html");
+//		driver = new ChromeDriver();
+//		js = (JavascriptExecutor) driver;
+//		driver.get("https://www.freecrm.com/index.html");
 	}
 
 	@AfterMethod
 	public void tearDown() {
-		driver.quit();
+		driver.quit();		
 	}
 
 	@Test
+
+	//Moving this to the page logic 
+	
 	public void freeCrmTitleTest() throws InterruptedException, IOException {
-		String title = driver.getTitle();
-		System.out.println("title is: " + title);
+		
+		
+		String title = 	freeCrmPage.FreeCrmTitleTest();
+		Assert.assertEquals(title,"Free CRM software for customer relationship management, sales, marketing campaigns and support.");
+		
+//		String title = driver.getTitle();
+//		System.out.println("title is: " + title);
 		getRunTimeInfoMessage("info", title);
 
-		if (title.equals("Free CRM software in the cloud powers sales and customer serviceQQQQ")) {
-			getRunTimeInfoMessage("info", "title is correct!! YAY!!!");
-			Assert.assertTrue(true);
-		} else {
-			getRunTimeInfoMessage("error", "title is not correct!! BUG BUG BUG!!!");
-			takeScreenshot("freecrmloginpage");
-			Assert.assertTrue(false);
-		}
+		
+		//none of this is a test
+//		if (title.equals("Free CRM software in the cloud powers sales and customer serviceQQQQ")) {
+//			getRunTimeInfoMessage("info", "title is correct!! YAY!!!");
+//			Assert.assertTrue(true);
+//		} else {
+//			getRunTimeInfoMessage("error", "title is not correct!! BUG BUG BUG!!!");
+//			takeScreenshot("freecrmloginpage");
+//			Assert.assertTrue(false);
+//		}
 
 	}
 
@@ -86,13 +110,14 @@ public class FreeCrmTest {
 //		js.executeScript("$.growl.warning({ title: 'Warning!', message: 'your warning message goes here' });");
 	}
 	
-	public static void takeScreenshot(String fileName) throws IOException{
-		// Take screenshot and store as a file format
-		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		// now copy the screenshot to desired location using copyFile //method
-		FileUtils.copyFile(src, 
-				new File("." + File.separator+ "screenshots" + File.separator+ fileName +".png"));
-
-	}
+//This will be added as a method to the testBase in case any other Tests wish to implement it.
+//	public static void takeScreenshot(String fileName) throws IOException{
+//		// Take screenshot and store as a file format
+//		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//		// now copy the screenshot to desired location using copyFile //method
+//		FileUtils.copyFile(src, 
+//				new File("." + File.separator+ "screenshots" + File.separator+ fileName +".png"));
+//
+//	}
 
 }
