@@ -49,9 +49,7 @@ public class LoginPage extends TestBase{
 	
 	//Initializing the Page Objects:
 	public LoginPage(){
-		//when class="cogmento-loading-spinner" disappears 
 		
-//		new WebDriverWait(driver, TestUtil.IMPLICIT_WAIT).until(ExpectedConditions.invisibilityOf(spinner));
 		new WebDriverWait(driver, 20).until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='cogmento-loading-wrapper']"))));
 		PageFactory.initElements(driver, this);
 
