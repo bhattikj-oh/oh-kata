@@ -54,23 +54,23 @@ public class ContactsPageTest extends TestBase{
 		contactsPage = homePage.clickOnContactsLink();
 	}
 	
-//	@Test(priority=1)
-//	public void verifyContactsPageLabel(){
-//		Assert.assertTrue(contactsPage.verifyContactsLabel(), "contacts label is missing on the page");
-//	}
-//	
-//	@Test(priority=2)
-//	public void selectSingleContactsTest(){
-//		contactsPage.selectContactsByName("test2 test2");
-//	}
-//	
-//	@Test(priority=3)
-//	public void selectMultipleContactsTest(){
-//		contactsPage.selectContactsByName("test2 test2");
-//		contactsPage.selectContactsByName("ui uiii");
-//
-//	}
-//	
+	@Test(priority=1)
+	public void verifyContactsPageLabel(){
+		Assert.assertTrue(contactsPage.verifyContactsLabel(), "contacts label is missing on the page");
+	}
+	
+	@Test(priority=2)
+	public void selectSingleContactsTest(){
+		contactsPage.selectContactsByName("test2 test2");
+	}
+	
+	@Test(priority=3)
+	public void selectMultipleContactsTest(){
+		contactsPage.selectContactsByName("test2 test2");
+		contactsPage.selectContactsByName("ui uiii");
+
+	}
+	
 	@DataProvider
 	public Object[][] getCRMTestData(){
 		Object data[][] = TestUtil.getTestData(sheetName);
@@ -80,7 +80,7 @@ public class ContactsPageTest extends TestBase{
 	
 	@Test(priority=4, dataProvider="getCRMTestData")
 	public void validateCreateNewContact(String firstName, String lastName, String company){
-		homePage.clickOnNewContactLink();
+		homePage.clickOnContactsLink();
 		//contactsPage.createNewContact("Mr.", "Tom", "Peter", "Google");
 		contactsPage.createNewContact(firstName, lastName, company);
 		

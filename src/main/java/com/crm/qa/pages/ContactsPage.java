@@ -12,19 +12,19 @@ public class ContactsPage extends TestBase {
 	@FindBy(xpath = "//span[contains(text(),'Contacts')]")
 	WebElement contactsLabel;
 	
-	@FindBy(id="first_name")
+	@FindBy(xpath="//input[@name='first_name']")
 	WebElement firstName;
 	
-	@FindBy(id="surname")
+	@FindBy(xpath="//input[@name='last_name']")
 	WebElement lastName;
 	
-	@FindBy(name="client_lookup")
+	@FindBy(xpath="//input[@name='department']")
 	WebElement company;
 	
 	@FindBy(xpath = "//button[contains(text(),'Create')]")
 	WebElement createBtn;
 	
-	@FindBy(xpath = "//button[contains(text(), 'Save']")
+	@FindBy(xpath = "//button[contains(text(), 'Save')]")
 	WebElement saveBtn;
 	
 	
