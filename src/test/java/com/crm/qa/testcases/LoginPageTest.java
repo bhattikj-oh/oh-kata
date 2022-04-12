@@ -31,7 +31,7 @@ public class LoginPageTest extends TestBase{
 		String title = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(title, "Cogmento CRM");
 	}
-	
+	//It doesn't seem as though this Image is there any more. 
 //	@Test(priority=2)
 //	public void crmLogoImageTest(){
 //		boolean flag = loginPage.validateCRMImage();
