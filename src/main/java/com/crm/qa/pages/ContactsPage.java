@@ -2,15 +2,14 @@ package com.crm.qa.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-
 import com.crm.qa.base.TestBase;
 
 public class ContactsPage extends TestBase {
 
-	@FindBy(xpath = "//td[contains(text(),'Contacts')]")
+	@FindBy(xpath = "//span[contains(text(),'Contacts')]")
 	WebElement contactsLabel;
 	
 	@FindBy(id="first_name")
@@ -22,8 +21,12 @@ public class ContactsPage extends TestBase {
 	@FindBy(name="client_lookup")
 	WebElement company;
 	
-	@FindBy(xpath = "//input[@type='submit' and @value='Save']")
+	@FindBy(xpath = "//button[contains(text(),'Create')]")
+	WebElement createBtn;
+	
+	@FindBy(xpath = "//button[contains(text(), 'Save']")
 	WebElement saveBtn;
+	
 	
 	
 	
@@ -39,15 +42,26 @@ public class ContactsPage extends TestBase {
 	
 	
 	public void selectContactsByName(String name){
-		driver.findElement(By.xpath("//a[text()='"+name+"']//parent::td[@class='datalistrow']"
-				+ "//preceding-sibling::td[@class='datalistrow']//input[@name='contact_id']")).click();
+		WebElement contactElement = driver.findElement(By.xpath("//a[text()='"+name+"']"));
+		Actions actions = new Actions(driver);
+		actions.moveToElement(contactElement).click();
+
 	}
 	
+	public void selectCheckboxOfContact(String name) {
+		WebElement contactCheckbox = driver.findElement(By.xpath("//a[text()='"+name+"']//parent::div[contains(text(),'checkbox']"));
+		Actions actions = new Actions(driver);
+				actions.moveToElement(contactCheckbox).click();	
+				
+				
+	}
 	
-	public void createNewContact(String title, String ftName, String ltName, String comp){
-		Select select = new Select(driver.findElement(By.name("title")));
-		select.selectByVisibleText(title);
+	public void createNewContact(String ftName, String ltName, String comp){
+//		Select select = new Select(driver.findElement(By.name("title")));
+//		select.selectByVisibleText(title); 
+		// No field called Title
 		
+		createBtn.click();
 		firstName.sendKeys(ftName);
 		lastName.sendKeys(ltName);
 		company.sendKeys(comp);
